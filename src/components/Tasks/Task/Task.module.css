@@ -27,3 +27,15 @@
 #MoreInfo > div {
     padding-top: 1em;
 }
+
+.TaskContainer {
+    width: 100%;
+}
+
+.TaskMoreInfo {
+    width: 4em;
+}
+
+.NotDone {
+    background-color: white;
+}

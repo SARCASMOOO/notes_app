@@ -2487,5 +2487,7 @@ If you have ideas for more “How To” recipes that should be on this page, [le
 
 ## Atribution 
 Icons used from "https://thenounproject.com/".
-Atribution text: add by Muhammad Rendi from the Noun Project
-Attribution text: checkmark by Barracuda from the Noun Project
+Attribution text
+add by Muhammad Rendi from the Noun Project
+checkmark by Barracuda from the Noun Project
+more by Lara  from the Noun Project
