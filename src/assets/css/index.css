@@ -22,6 +22,7 @@ nav, footer {
 }
 
 main {
-
+    background-color: #FFE0E0;
+    background-color: var(--light-red-color);
 }
 

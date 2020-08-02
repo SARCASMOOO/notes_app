@@ -1,5 +1,6 @@
 import styles from './Footer.module.css';
 import addIcon from '../../assets/images/add.svg';
+import { pure } from 'recompose';
 
 const React = require('react');
 
@@ -23,4 +24,4 @@ const Footer = (props: { tasks: any; }) => {
         </footer>);
 }
 
-export default Footer;
+export default pure(Footer);

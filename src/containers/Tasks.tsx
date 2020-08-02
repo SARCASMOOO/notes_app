@@ -18,6 +18,8 @@ class Tasks extends Component<any, any> {
                   id={task.id}
                   key={task.id}
                   selected={this.state.selected}
+                  removeTask={this.props.removeTask}
+                  setStatus={this.props.setStatus}
                   clicked={(id: any) => {
                       if (this.state.selected === id) {
                           id = null;

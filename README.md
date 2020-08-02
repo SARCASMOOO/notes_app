@@ -2491,3 +2491,4 @@ Attribution text
 add by Muhammad Rendi from the Noun Project
 checkmark by Barracuda from the Noun Project
 more by Lara  from the Noun Project
+complete by DailyPM from the Noun Project
