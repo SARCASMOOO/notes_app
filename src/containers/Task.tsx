@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import styles from "../components/Tasks/Task/Task.module.css";
 import doneIcon from "../assets/images/checkmark.svg";
 import Draggable, {DraggableCore} from 'react-draggable';
@@ -56,26 +56,33 @@ class Task extends Component<any, any> {
         };
 
         return (
-            <Draggable {...this.state.draggableSettings} bounds={{left: 0}} axis='x'>
-                <div className={stylesApplied.join(' ')}
-                     onClick={() => {
-                         console.log('here');
-                         this.props.clicked(this.props.id);
-                     }}>
+            <Fragment>
+                <Draggable {...this.state.draggableSettings} bounds={{left: 0}} axis='x'>
+                    <div className={stylesApplied.join(' ')}
+                         onClick={() => {
+                             console.log('here');
+                             this.props.clicked(this.props.id);
+                         }}>
 
-                    <div className={styles.Task}>
-                        <div>
-                            <div>{this.props.title}</div>
-                            <div>{this.props.time}</div>
+                        <div className={styles.Task}>
+                            <div>
+                                <div>{this.props.title}</div>
+                                <div>{this.props.time}</div>
+                            </div>
+                            {(this.props.status === 'done') ? doneImage : null}
                         </div>
-                        {(this.props.status === 'done') ? doneImage : null}
-                    </div>
 
-                    {updateSelected ? moreInfo : null}
-                </div>
-            </Draggable>
+                        {updateSelected ? moreInfo : null}
+                    </div>
+                </Draggable>
+                {/*<div>*/}
+                {/*    This is a test.*/}
+                {/*</div>*/}
+            </Fragment>
         );
     }
 }
 
 export default Task;
+
+
