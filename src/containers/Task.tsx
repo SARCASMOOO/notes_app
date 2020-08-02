@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import styles from "../components/Tasks/Task/Task.module.css";
 import doneIcon from "../assets/images/checkmark.svg";
 import Draggable, {DraggableCore} from 'react-draggable';
@@ -7,10 +7,10 @@ class Task extends Component<any, any> {
     constructor(props: { id: any; }) {
         super(props);
         this.state = {
+            blockOnClick: false,
             id: props.id,
             isSelected: false,
             draggableSettings: {
-                // FIXME: OnClick fires after drag fires which shoudn't happen.
                 onStop: ((event: any) => {
                     const xCord = this.state.x;
                     const yCord = this.state.y;
@@ -20,7 +20,8 @@ class Task extends Component<any, any> {
                         },
                     });
                 }),
-                onDrag: ((event: any) => {
+                onStart: ((event: any) => {
+                    console.log('On start' + Date.now())
                     this.setState({
                         draggableSettings: {position: {x: 0, y: 0}},
                         x: event.PageX,
@@ -58,8 +59,10 @@ class Task extends Component<any, any> {
             <Draggable {...this.state.draggableSettings} bounds={{left: 0}} axis='x'>
                 <div className={stylesApplied.join(' ')}
                      onClick={() => {
+                         console.log('here');
                          this.props.clicked(this.props.id);
                      }}>
+
                     <div className={styles.Task}>
                         <div>
                             <div>{this.props.title}</div>
@@ -67,6 +70,7 @@ class Task extends Component<any, any> {
                         </div>
                         {(this.props.status === 'done') ? doneImage : null}
                     </div>
+
                     {updateSelected ? moreInfo : null}
                 </div>
             </Draggable>
