@@ -1,0 +1,17 @@
+.Nav {
+    display: flex;
+    color: white;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    cursor: default;
+}
+
+hr {
+    margin: 0;
+}
+
+.Nav > li:active {
+    transform: scaleY(1.08);
+}

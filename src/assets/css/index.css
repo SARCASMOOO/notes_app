@@ -1,0 +1,27 @@
+/*
+  Notes,
+  Some properties are defined twice to support browsers which may
+  not have css variables.
+*/
+
+@import "colors.module.css";
+
+:root {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 1fr 8fr 1fr;
+}
+
+nav, footer {
+    background-color: #00A284;
+    background-color: var(--dark-green-color);
+}
+
+main {
+
+}
+

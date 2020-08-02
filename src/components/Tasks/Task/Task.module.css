@@ -1,0 +1,29 @@
+.Task {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.TotalTask {
+    border-style: solid;
+    border-width: 1px;
+    border-color: silver;
+}
+
+.checkmark {
+    height: 2em;
+    width: 2em;
+}
+
+.Done {
+    background-color: #E0FFE9;
+    background-color: var(--light-green-color);
+}
+
+#MoreInfo {
+    padding: 0.5em;
+}
+
+#MoreInfo > div {
+    padding-top: 1em;
+}
