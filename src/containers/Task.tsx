@@ -1,7 +1,9 @@
 import React, {Component, Fragment} from "react";
 import styles from "../components/Tasks/Task/Task.module.css";
 import doneIcon from "../assets/images/checkmark.svg";
-import Draggable, {DraggableCore} from 'react-draggable';
+import Draggable from 'react-draggable';
+// @ts-ignore
+import Tappable from 'react-tappable';
 
 class Task extends Component<any, any> {
     constructor(props: { id: any; }) {
@@ -20,7 +22,7 @@ class Task extends Component<any, any> {
                         },
                     });
                 }),
-                onStart: ((event: any) => {
+                onDrag: ((event: any) => {
                     console.log('On start' + Date.now())
                     this.setState({
                         draggableSettings: {position: {x: 0, y: 0}},
@@ -57,13 +59,12 @@ class Task extends Component<any, any> {
 
         return (
             <Fragment>
+                <Tappable onTap={() => {
+                    console.log('here');
+                    this.props.clicked(this.props.id);
+                }}>
                 <Draggable {...this.state.draggableSettings} bounds={{left: 0}} axis='x'>
-                    <div className={stylesApplied.join(' ')}
-                         onClick={() => {
-                             console.log('here');
-                             this.props.clicked(this.props.id);
-                         }}>
-
+                    <div className={stylesApplied.join(' ')}>
                         <div className={styles.Task}>
                             <div>
                                 <div>{this.props.title}</div>
@@ -75,6 +76,7 @@ class Task extends Component<any, any> {
                         {updateSelected ? moreInfo : null}
                     </div>
                 </Draggable>
+                    </Tappable>
                 {/*<div>*/}
                 {/*    This is a test.*/}
                 {/*</div>*/}
