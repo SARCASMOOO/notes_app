@@ -15,6 +15,11 @@
     width: 2em;
 }
 
+.checkmark > img {
+    paddingRight: '1em';
+    paddingTop: '0.5em';
+}
+
 .Done {
     background-color: #E0FFE9;
     background-color: var(--light-green-color);

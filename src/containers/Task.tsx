@@ -1,17 +1,11 @@
-import React, {Component, Fragment, useState} from "react";
+import React, {Component} from "react";
 
 // Reusable
-import Button from './Button';
+import Button, {ButtonType} from './Button';
 import TaskBulk from "./TaskBulk";
 
 // Style
 import styles from "../components/Tasks/Task/Task.module.css";
-
-// SVG
-import doneIcon from "../assets/images/checkmark.svg";
-import finishIcon from '../assets/images/finish.svg';
-import moreIcon from '../assets/images/more.svg';
-
 
 
 export interface TaskModel {
@@ -36,15 +30,6 @@ interface State {
     showMoreInfo: boolean;
 }
 
-
-
-function DoneImage({onClick}: {onClick?: () => void}) {
-    return (<img style={{paddingRight: '1em', paddingTop: '0.5em'}} onClick={onClick}
-         className={styles.checkmark}
-         src={doneIcon}
-         alt=""/>);
-}
-
 class Task extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
@@ -54,9 +39,6 @@ class Task extends Component<Props, State> {
             showMoreInfo: false
         }
     }
-
-
-
 
     private showMore = ()=> {
         this.setState(prevState => {
@@ -75,24 +57,20 @@ class Task extends Component<Props, State> {
     };
 
     render() {
-        const {task, removeAction, setStatus} = this.props;
-        const {status, id, time, title, description} = task;
-
-        const tapStyle = status === 'done' ? styles.Done : styles.NotDone;
+        const {task, removeAction} = this.props;
+        const {status, time, title, description} = task;
 
         return (
-            <Fragment>
                 <div style={{display: 'flex', width: '100%'}} className={styles.TotalTask}>
                     <div className={styles.TaskContainer}>
                         <TaskBulk title={title} time={time} description={description} showMoreInfo={this.state.showMoreInfo} status={status} removeAction={() => removeAction(task)}/>
                     </div>
                     <div style={{backgroundColor: '#E0FFE9', display: 'flex'}}>
-                        {(status === 'done') ? <DoneImage onClick={this.markAsStarted} /> : null}
-                        {(status !== 'done') ? <Button onClick={this.markAsDone} icon={finishIcon} className={tapStyle}/> : null}
-                        <Button className={tapStyle} icon={moreIcon} onClick={ this.showMore } />
+                        {(status === 'done') ? <Button type={ButtonType.MARK_STARTED} onClick={this.markAsStarted} /> : null}
+                        {(status !== 'done') ? <Button type={ButtonType.MARK_DONE} onClick={this.markAsDone}/> : null}
+                        <Button type={ButtonType.MORE_INFO} onClick={ this.showMore } />
                     </div>
                 </div>
-            </Fragment>
         );
     }
 }
