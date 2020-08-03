@@ -1,19 +1,17 @@
 import React, {Component} from "react";
-
 // Reusable
 import Button, {ButtonType} from './Button';
 import TaskBulk from "./TaskBulk";
-
 // Style
 import styles from "../components/Tasks/Task/Task.module.css";
-import TaskModel from "./TaskModel";
+import TaskModel, {TaskStatus} from "./TaskModel";
 
 
 interface Props {
     task: TaskModel;
     selected: boolean;
 
-    setStatus: (id: string, status: string) => void;
+    setStatus: (id: string, status: TaskStatus) => void;
     removeAction: (task: TaskModel) => void;
 }
 
@@ -41,11 +39,11 @@ class Task extends Component<Props, State> {
     };
 
     private markAsStarted = () => {
-        this.props.setStatus(this.props.task.id, 'started');
+        this.props.setStatus(this.props.task.id, TaskStatus.STARTED);
     };
 
     private markAsDone = () => {
-        this.props.setStatus(this.props.task.id, 'done');
+        this.props.setStatus(this.props.task.id, TaskStatus.DONE);
     };
 
     private removeTask = () => {
@@ -54,11 +52,11 @@ class Task extends Component<Props, State> {
 
     render() {
         const task = this.props.task;
-        const isDone = task.status === 'done';
+        const isDone = task.status === TaskStatus.DONE;
         const bkgColor = isDone ? styles.Done : styles.NotDone;
 
         const markButton = isDone ? <Button type={ButtonType.MARK_STARTED} onClick={this.markAsStarted}/> :
-            <Button type={ButtonType.MARK_DONE} onClick={this.markAsDone}/>;
+                                    <Button type={ButtonType.MARK_DONE} onClick={this.markAsDone}/>;
 
         return (
             <div style={{display: 'flex', width: '100%'}} className={styles.TotalTask + " " + bkgColor}>

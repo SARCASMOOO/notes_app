@@ -1,10 +1,16 @@
 interface TaskModel {
-    id: string; // TODO: Make type number
-    status: string;
+    id: string;
+    status: TaskStatus;
     title: string;
     description: string;
     time: string; // TODO: Make it type date
 }
 
+
+export enum TaskStatus {
+    DONE,
+    STARTED,
+    OVERDUE
+}
 
 export default TaskModel;

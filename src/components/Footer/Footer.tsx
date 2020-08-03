@@ -1,14 +1,14 @@
 import styles from './Footer.module.css';
 import addIcon from '../../assets/images/add.svg';
-import { pure } from 'recompose';
-import TaskModel from "../../containers/TaskModel";
+import {pure} from 'recompose';
+import TaskModel, {TaskStatus} from "../../containers/TaskModel";
 
 const React = require('react');
 
 
 
 const Footer = (props: { tasks: TaskModel[]; }) => {
-    const completedTasks = props.tasks.filter(task => task.status === 'done').length;
+    const completedTasks = props.tasks.filter(task => task.status === TaskStatus.DONE).length;
 
     return (
         <footer className={styles.Footer}>

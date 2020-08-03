@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import styles from '../components/Tasks/Tasks.module.css';
 import Task from './Task';
-import TaskModel from "./TaskModel";
+import TaskModel, {TaskStatus} from "./TaskModel";
 
 
 interface Props {
     tasks: TaskModel[];
     removeTask: (task: TaskModel) => void;
-    setStatus: (id: string, status: string) => void;
+    setStatus: (id: string, status: TaskStatus) => void;
 }
 
 interface State {
