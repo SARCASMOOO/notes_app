@@ -1,38 +1,29 @@
 import React, {Component} from 'react';
 import styles from '../components/Tasks/Tasks.module.css';
-import Task from './Task';
+import Task, {TaskModel} from './Task';
 
-class Tasks extends Component<any, any> {
-    state = {
-        selected: null
-    }
+
+interface Props {
+    tasks: TaskModel[];
+    removeTask: (task: TaskModel) => void;
+    setStatus: (id: string, status: string) => void;
+}
+
+interface State {
+    selected?: boolean;
+}
+
+class Tasks extends Component< Props, State > {
 
     render() {
-        let tasksWrapped = [...this.props.tasks];
+        const tasks = this.props.tasks;
+        const {removeTask, setStatus} = this.props;
 
-        tasksWrapped = tasksWrapped.map((task) => (
-            <Task title={task.title}
-                  status={task.status}
-                  description={task.description}
-                  time={task.time}
-                  id={task.id}
-                  key={task.id}
-                  selected={this.state.selected}
-                  removeTask={this.props.removeTask}
-                  setStatus={this.props.setStatus}
-                  clicked={(id: any) => {
-                      if (this.state.selected === id) {
-                          id = null;
-                      }
-                      this.setState({
-                          selected: id
-                      });
-                  }}/>
-        ));
+        const tasksList = tasks.map(task => <Task key={task.id} task={task} selected={false} removeAction={removeTask} setStatus={setStatus} /> );
 
         return (
             <div className={styles.Tasks}>
-                {tasksWrapped}
+                {tasksList}
             </div>
         );
     }
