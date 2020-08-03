@@ -16,8 +16,8 @@
 }
 
 .checkmark > img {
-    paddingRight: '1em';
-    paddingTop: '0.5em';
+    padding-right: 1em;
+    padding-top: 0.5em;
 }
 
 .Done {
@@ -43,4 +43,22 @@
 
 .NotDone {
     background-color: white;
+}
+/* BUTTON */
+.Button {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 4em;
+}
+
+.MARK_STARTED > img {
+    padding-top: 0.5em;
+    width: 2em;
+}
+
+.MARK_DONE > img,
+.MORE_INFO > img {
+    padding-top: 0.3em;
+    width: 2.2em;
 }

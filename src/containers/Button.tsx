@@ -21,27 +21,29 @@ export enum ButtonType {
 function Button({onClick, type}: { onClick?: () => void, type: ButtonType}) {
     let icon: string;
     let className: string;
+    let alt: string;
 
     switch (type) {
         case ButtonType.MARK_STARTED:
             icon = doneIcon;
-            className = styles.checkmark;
-            className += "";
-            className += styles.Done;
+            className = styles.MARK_STARTED;
+            alt = 'Mark as started button';
             break;
         case ButtonType.MARK_DONE:
             icon = finishIcon;
-            className = styles.NotDone;
+            className = styles.MARK_DONE;
+            alt = 'Mark as done button';
             break;
         case ButtonType.MORE_INFO:
             icon = moreIcon;
-            className = styles.tapStyle;
+            className = styles.MORE_INFO;
+            alt = 'More info button';
             break;
     }
 
     return (
-        <Tappable className={`${styles.TaskMoreInfo} ${className}`} onTap={onClick}>
-            <img style={{width: '2.2em', paddingLeft: '1em', paddingTop: '0.3em'}} src={icon} alt=""/>
+        <Tappable className={`${styles.Button} ${className}`} onTap={onClick}>
+            <img src={icon} alt={alt}/>
         </Tappable>
     );
 }

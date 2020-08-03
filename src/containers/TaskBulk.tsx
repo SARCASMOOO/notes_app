@@ -11,12 +11,11 @@ interface TaskBulkProps {
     time: string;
     description: string;
     showMoreInfo: boolean;
-    status: string;
 
     removeAction: () => void;
 }
 
-function TaskBulk({title, time, description, showMoreInfo, status, removeAction}: TaskBulkProps) {
+function TaskBulk({title, time, description, showMoreInfo, removeAction}: TaskBulkProps) {
     const initialState = {
         draggableSettings:
             {
@@ -24,10 +23,6 @@ function TaskBulk({title, time, description, showMoreInfo, status, removeAction}
             }
     };
     const [draggableSettings, setDraggableSettings] = useState(initialState);
-
-    const bounds = {
-        left: 'parent'
-    };
 
     const onStart: DraggableEventHandler = (event, data) => {
         setDraggableSettings(initialState);
@@ -48,7 +43,7 @@ function TaskBulk({title, time, description, showMoreInfo, status, removeAction}
         <Draggable {...draggableSettings} onStop={onStop} bounds={{left: 0, right: (window.innerWidth * 0.80)}} axis='x'
                    onStart={onStart}>
 
-            <div className={status === 'done' ? styles.Done : styles.NotDone}>
+            <div>
                 <div className={styles.Task}>
                     <div>
                         <div>{title}</div>

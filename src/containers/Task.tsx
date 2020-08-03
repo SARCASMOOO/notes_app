@@ -60,12 +60,14 @@ class Task extends Component<Props, State> {
         const {task, removeAction} = this.props;
         const {status, time, title, description} = task;
 
+        const bkgColor = status === 'done' ? styles.Done : styles.NotDone;
+
         return (
-                <div style={{display: 'flex', width: '100%'}} className={styles.TotalTask}>
+                <div style={{display: 'flex', width: '100%'}} className={styles.TotalTask + " " + bkgColor}>
                     <div className={styles.TaskContainer}>
-                        <TaskBulk title={title} time={time} description={description} showMoreInfo={this.state.showMoreInfo} status={status} removeAction={() => removeAction(task)}/>
+                        <TaskBulk title={title} time={time} description={description} showMoreInfo={this.state.showMoreInfo} removeAction={() => removeAction(task)}/>
                     </div>
-                    <div style={{backgroundColor: '#E0FFE9', display: 'flex'}}>
+                    <div style={{display: 'flex'}}>
                         {(status === 'done') ? <Button type={ButtonType.MARK_STARTED} onClick={this.markAsStarted} /> : null}
                         {(status !== 'done') ? <Button type={ButtonType.MARK_DONE} onClick={this.markAsDone}/> : null}
                         <Button type={ButtonType.MORE_INFO} onClick={ this.showMore } />
