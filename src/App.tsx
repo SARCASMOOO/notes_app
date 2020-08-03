@@ -1,12 +1,13 @@
 import './assets/css/index.css';
+import React from 'react';
+
 import Layout from './components/Layout/Layout'
 import Nav from './containers/Nav'
 import Footer from "./components/Footer/Footer";
 import Tasks from './containers/Tasks';
 import {Component} from "react";
-import {TaskModel} from "./containers/Task";
+import TaskModel from "./containers/TaskModel";
 
-const React = require('react');
 
 //
 // function map<T, C>(arr: T[], fn: (elem: T) => C): C[] {
@@ -68,14 +69,6 @@ class App extends Component<{}, { tasks: TaskModel[] }> {
     }
 
     setStatus = (id: string, status: string) => {
-        // const newTasks = [...this.state.tasks];
-        //
-        // newTasks.forEach(task => {
-        //     if(task.id === id.toString())
-        //         task.status = status;
-        // });
-        //
-        // this.setState({tasks: newTasks});
         this.setState((prevState) => {
             const prevTasks = [...prevState.tasks];
 
@@ -92,18 +85,6 @@ class App extends Component<{}, { tasks: TaskModel[] }> {
 
 
     removeTask = (task: TaskModel) => {
-        // const newTasks = [...this.state.tasks];
-        // let task;
-        // let index = 0;
-        // for (task of newTasks) {
-        //     if (task.id === id.toString()) {
-        //         newTasks.splice(index, 1);
-        //         break;
-        //     }
-        //     index++;
-        // }
-        // this.setState({tasks: newTasks});
-        //+++
         this.setState((prevState) => {
             const prevTasks = [...prevState.tasks];
 

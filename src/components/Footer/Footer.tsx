@@ -1,12 +1,10 @@
 import styles from './Footer.module.css';
 import addIcon from '../../assets/images/add.svg';
 import { pure } from 'recompose';
-import {TaskModel} from "../../containers/Task";
+import TaskModel from "../../containers/TaskModel";
 
 const React = require('react');
 
-
-//type Tasks = {status: string};
 
 
 const Footer = (props: { tasks: TaskModel[]; }) => {

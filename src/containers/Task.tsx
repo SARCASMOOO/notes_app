@@ -6,15 +6,7 @@ import TaskBulk from "./TaskBulk";
 
 // Style
 import styles from "../components/Tasks/Task/Task.module.css";
-
-
-export interface TaskModel {
-    id: string; // TODO: Make type number
-    status: string;
-    title: string;
-    description: string;
-    time: string; // TODO: Make it type date
-}
+import TaskModel from "./TaskModel";
 
 
 interface Props {

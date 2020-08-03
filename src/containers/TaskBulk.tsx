@@ -4,17 +4,17 @@ import Draggable, {DraggableEventHandler} from 'react-draggable';
 import MoreInfo from "./MoreInfo";
 
 import styles from "../components/Tasks/Task/Task.module.css";
-import {TaskModel} from "./Task";
+import TaskModel from "./TaskModel";
 
 
-interface TaskBulkProps {
+interface Props {
     task: TaskModel;
     showMoreInfo: boolean;
 
     removeAction: () => void;
 }
 
-function TaskBulk({task, showMoreInfo, removeAction}: TaskBulkProps) {
+function TaskBulk({task, showMoreInfo, removeAction}: Props) {
     const initialState = {
         draggableSettings:
             {
