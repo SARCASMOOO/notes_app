@@ -1,11 +1,18 @@
 import React, {Component, Fragment, useState} from "react";
+
+// Reusable
+import Button from './Button';
+import TaskBulk from "./TaskBulk";
+
+// Style
 import styles from "../components/Tasks/Task/Task.module.css";
+
+// SVG
 import doneIcon from "../assets/images/checkmark.svg";
-import Draggable, {DraggableEventHandler} from 'react-draggable';
-// @ts-ignore
-import Tappable from 'react-tappable';
-import moreIcon from '../assets/images/more.svg';
 import finishIcon from '../assets/images/finish.svg';
+import moreIcon from '../assets/images/more.svg';
+
+
 
 export interface TaskModel {
     id: string; // TODO: Make type number
@@ -27,133 +34,16 @@ interface Props {
 interface State {
     blockOnClick: boolean;
     showMoreInfo: boolean;
-    x?: number;
-    y?: number;
 }
 
 
-//
-// const finishedBtn = (<Tappable className={tapStyles.join(' ')} onTap={() => {
-//     this.props.setStatus(this.state.id, 'done')
-// }}>
-//     <img style={{width: '2.2em', paddingLeft: '1em', paddingTop: '0.3em'}} src={finishIcon} alt=""/>
-// </Tappable>);
-//
-//
-// const moveBtn = (<Tappable className={tapStyles.join(' ')} onTap={(event: any) => {
-//     this.props.clicked(id);
-// }}>
-//     <img style={{width: '2.2em', paddingLeft: '1em', paddingTop: '0.3em'}} src={moreIcon} alt=""/>
-// </Tappable>);
 
-function Button({onClick, icon, className}: { onClick?: () => void, icon?: string, className?: string }) {
-    return (
-        <Tappable className={`${styles.TaskMoreInfo} ${className}`} onTap={onClick}>
-            <img style={{width: '2.2em', paddingLeft: '1em', paddingTop: '0.3em'}} src={icon} alt=""/>
-        </Tappable>
-    );
+function DoneImage({onClick}: {onClick?: () => void}) {
+    return (<img style={{paddingRight: '1em', paddingTop: '0.5em'}} onClick={onClick}
+         className={styles.checkmark}
+         src={doneIcon}
+         alt=""/>);
 }
-
-//
-// moreInfo = (
-// moreInfo = (
-//     <div id={styles.MoreInfo}>
-//         <form style={{display: 'flex', flexDirection: 'column'}}>
-//             <label style={{display: 'flex', flexDirection: 'column'}}>
-//                 Time:
-//                 <input type="datetime-local" id="meeting-time"
-//                        name="meeting-time" value={time}/>
-//
-//             </label>
-//             <label style={{display: 'flex', flexDirection: 'column'}}>
-//                 Description:
-//                 <textarea>
-//                             {this.state.description}
-//                         </textarea>
-//             </label>
-//         </form>
-//     </div>
-// );
-// );
-
-function MoreInfo({time, description}: { time: string, description: string }) {
-    return (
-        <div id={styles.MoreInfo}>
-            <form style={{display: 'flex', flexDirection: 'column'}}>
-                <label style={{display: 'flex', flexDirection: 'column'}}>
-                    Time:
-                    <input type="datetime-local" id="meeting-time"
-                           name="meeting-time" value={time}/>
-
-                </label>
-                <label style={{display: 'flex', flexDirection: 'column'}}>
-                    Description:
-                    <textarea>
-                            {description}
-                        </textarea>
-                </label>
-            </form>
-        </div>
-    );
-}
-
-
-interface TaskBulkProps {
-    title: string;
-    time: string;
-    description: string;
-    showMoreInfo: boolean;
-    status: string;
-
-    removeAction: () => void;
-}
-
-function TaskBulk({title, time, description, showMoreInfo, status, removeAction}: TaskBulkProps) {
-    const initialState = {
-        draggableSettings:
-            {
-                position: {x: 0, y: 0}
-            }
-    };
-    const [draggableSettings, setDraggableSettings] = useState(initialState);
-
-    const bounds = {
-        left: 'parent'
-    };
-
-    const onStart: DraggableEventHandler = (event, data) => {
-        setDraggableSettings(initialState);
-    };
-
-    const onStop: DraggableEventHandler = (event, data) => {
-        console.log('Data x is: ' + data.lastX);
-        console.log('window x is: ' + (window.innerWidth));
-
-        if (data.lastX > (window.innerWidth / 2)) {
-            removeAction();
-            console.log('X is bigger then half the screen.');
-        }
-    };
-
-
-    return (
-        <Draggable {...draggableSettings} onStop={onStop} bounds={{left: 0, right: (window.innerWidth * 0.80)}} axis='x'
-                   onStart={onStart}>
-
-            <div className={status === 'done' ? styles.Done : styles.NotDone}>
-                <div className={styles.Task}>
-                    <div>
-                        <div>{title}</div>
-                        <div>{time}</div>
-                    </div>
-                </div>
-                {showMoreInfo ? <MoreInfo time={time} description={description}/> : null}
-            </div>
-
-        </Draggable>
-    );
-}
-
 
 class Task extends Component<Props, State> {
     constructor(props: Props) {
@@ -165,14 +55,7 @@ class Task extends Component<Props, State> {
         }
     }
 
-    private doneImage = () => (
-        <img style={{paddingRight: '1em', paddingTop: '0.5em'}} onClick={() => {
-            this.props.setStatus(this.props.task.id, 'started');
-        }}
-             className={styles.checkmark}
-             src={doneIcon}
-             alt=""/>
-    );
+
 
 
     private showMore = ()=> {
@@ -181,6 +64,14 @@ class Task extends Component<Props, State> {
                 showMoreInfo: !prevState.showMoreInfo
             }
         });
+    };
+
+    private markAsStarted = () => {
+        this.props.setStatus(this.props.task.id, 'started');
+    };
+
+    private markAsDone = () => {
+        this.props.setStatus(this.props.task.id, 'done');
     };
 
     render() {
@@ -196,8 +87,8 @@ class Task extends Component<Props, State> {
                         <TaskBulk title={title} time={time} description={description} showMoreInfo={this.state.showMoreInfo} status={status} removeAction={() => removeAction(task)}/>
                     </div>
                     <div style={{backgroundColor: '#E0FFE9', display: 'flex'}}>
-                        {(status === 'done') ? this.doneImage() : null}
-                        {(status !== 'done') ? <Button onClick={() => setStatus(id, 'done')} icon={finishIcon} className={tapStyle}/> : null}
+                        {(status === 'done') ? <DoneImage onClick={this.markAsStarted} /> : null}
+                        {(status !== 'done') ? <Button onClick={this.markAsDone} icon={finishIcon} className={tapStyle}/> : null}
                         <Button className={tapStyle} icon={moreIcon} onClick={ this.showMore } />
                     </div>
                 </div>
