@@ -40,7 +40,7 @@ class Task extends Component<Props, State> {
         }
     }
 
-    private showMore = ()=> {
+    private showMore = () => {
         this.setState(prevState => {
             return {
                 showMoreInfo: !prevState.showMoreInfo
@@ -56,23 +56,28 @@ class Task extends Component<Props, State> {
         this.props.setStatus(this.props.task.id, 'done');
     };
 
-    render() {
-        const {task, removeAction} = this.props;
-        const {status, time, title, description} = task;
+    private removeTask = () => {
+        this.props.removeAction(this.props.task);
+    }
 
-        const bkgColor = status === 'done' ? styles.Done : styles.NotDone;
+    render() {
+        const task = this.props.task;
+        const isDone = task.status === 'done';
+        const bkgColor = isDone ? styles.Done : styles.NotDone;
+
+        const markButton = isDone ? <Button type={ButtonType.MARK_STARTED} onClick={this.markAsStarted}/> :
+            <Button type={ButtonType.MARK_DONE} onClick={this.markAsDone}/>;
 
         return (
-                <div style={{display: 'flex', width: '100%'}} className={styles.TotalTask + " " + bkgColor}>
-                    <div className={styles.TaskContainer}>
-                        <TaskBulk title={title} time={time} description={description} showMoreInfo={this.state.showMoreInfo} removeAction={() => removeAction(task)}/>
-                    </div>
-                    <div style={{display: 'flex'}}>
-                        {(status === 'done') ? <Button type={ButtonType.MARK_STARTED} onClick={this.markAsStarted} /> : null}
-                        {(status !== 'done') ? <Button type={ButtonType.MARK_DONE} onClick={this.markAsDone}/> : null}
-                        <Button type={ButtonType.MORE_INFO} onClick={ this.showMore } />
-                    </div>
+            <div style={{display: 'flex', width: '100%'}} className={styles.TotalTask + " " + bkgColor}>
+                <div className={styles.TaskContainer}>
+                    <TaskBulk task={task} showMoreInfo={this.state.showMoreInfo} removeAction={this.removeTask}/>
                 </div>
+                <div style={{display: 'flex'}}>
+                    {markButton}
+                    <Button type={ButtonType.MORE_INFO} onClick={this.showMore}/>
+                </div>
+            </div>
         );
     }
 }

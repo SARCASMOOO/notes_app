@@ -4,18 +4,17 @@ import Draggable, {DraggableEventHandler} from 'react-draggable';
 import MoreInfo from "./MoreInfo";
 
 import styles from "../components/Tasks/Task/Task.module.css";
+import {TaskModel} from "./Task";
 
 
 interface TaskBulkProps {
-    title: string;
-    time: string;
-    description: string;
+    task: TaskModel;
     showMoreInfo: boolean;
 
     removeAction: () => void;
 }
 
-function TaskBulk({title, time, description, showMoreInfo, removeAction}: TaskBulkProps) {
+function TaskBulk({task, showMoreInfo, removeAction}: TaskBulkProps) {
     const initialState = {
         draggableSettings:
             {
@@ -38,19 +37,19 @@ function TaskBulk({title, time, description, showMoreInfo, removeAction}: TaskBu
         }
     };
 
+    const rightOffset = (window.innerWidth * 0.80); // TODO: change when window changes
 
     return (
-        <Draggable {...draggableSettings} onStop={onStop} bounds={{left: 0, right: (window.innerWidth * 0.80)}} axis='x'
-                   onStart={onStart}>
+        <Draggable {...draggableSettings} onStop={onStop} bounds={{left: 0, right: rightOffset}} axis='x' onStart={onStart}>
 
             <div>
                 <div className={styles.Task}>
                     <div>
-                        <div>{title}</div>
-                        <div>{time}</div>
+                        <div>{task.title}</div>
+                        <div>{task.time}</div>
                     </div>
                 </div>
-                {showMoreInfo ? <MoreInfo time={time} description={description}/> : null}
+                {showMoreInfo ? <MoreInfo time={task.time} description={task.description}/> : null}
             </div>
 
         </Draggable>

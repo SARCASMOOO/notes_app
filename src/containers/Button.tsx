@@ -2,13 +2,13 @@ import React from "react";
 
 import styles from "../components/Tasks/Task/Task.module.css";
 
-// @ts-ignore
-import Tappable from 'react-tappable';
-
 // SVG
 import moreIcon from "../assets/images/more.svg";
 import finishIcon from "../assets/images/finish.svg";
 import doneIcon from "../assets/images/checkmark.svg";
+
+// onClick for mobile
+const Tappable = require('react-tappable');
 
 
 export enum ButtonType {
