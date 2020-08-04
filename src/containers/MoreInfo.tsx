@@ -2,14 +2,15 @@ import React, {CSSProperties} from "react";
 
 import styles from "../components/Tasks/Task/Task.module.css";
 
-function MoreInfo({time, description}: { time: string, description: string }) {
+function MoreInfo({time, description}: { time: Date, description: string }) {
     const column: CSSProperties = {display: 'flex', flexDirection: 'column'};
 
+    const date = time.toISOString().slice(0, -5);
     return (
         <div id={styles.MoreInfo}>
             <form style={column}>
                 <label style={column}>
-                    Time: <input type="datetime-local" id="meeting-time" name="meeting-time" value={time}/>
+                    Time: <input type="datetime-local" id="meeting-time" name="meeting-time" value={date}/>
                 </label>
 
                 <label style={column}>

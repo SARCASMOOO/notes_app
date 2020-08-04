@@ -46,7 +46,7 @@ function TaskBulk({task, showMoreInfo, removeAction}: Props) {
                 <div className={styles.Task}>
                     <div>
                         <div>{task.title}</div>
-                        <div>{task.time}</div>
+                        <div>{task.time.toLocaleString()}</div>
                     </div>
                 </div>
                 {showMoreInfo ? <MoreInfo time={task.time} description={task.description}/> : null}

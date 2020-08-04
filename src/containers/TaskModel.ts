@@ -3,7 +3,7 @@ interface TaskModel {
     status: TaskStatus;
     title: string;
     description: string;
-    time: string; // TODO: Make it type date
+    time: Date;
 }
 
 

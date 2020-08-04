@@ -30,35 +30,37 @@ import TaskModel, {TaskStatus} from "./containers/TaskModel";
 
 
 
-// STATUS: done | started | overdue
+// description: 'This is a task.', status: done | started | overdue
+
+const randomDate = new Date("2018-06-12T19:30");
 
 class App extends Component<{}, { tasks: TaskModel[] }> {
     private mockTasks: TaskModel[] = [
-        {title: 'Hello', status: TaskStatus.DONE, description: 'This is a task.', time: "2018-06-12T19:30", id: '1'},
-        {title: 'Task2', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '2'},
-        {title: 'Task3', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '3'},
-        {title: 'Task4', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '4'},
-        {title: 'Task1', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '5'},
-        {title: 'Task2', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '6'},
-        {title: 'Task3', status: TaskStatus.DONE, description: 'This is a task.', time: "2018-06-12T19:30", id: '7'},
-        {title: 'Task4', status: TaskStatus.DONE, description: 'This is a task.', time: "2018-06-12T19:30", id: '8'},
-        {title: 'Task1', status: TaskStatus.DONE, description: 'This is a task.', time: "2018-06-12T19:30", id: '9'},
-        {title: 'Task2', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '10'},
-        {title: 'Task3', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '11'},
-        {title: 'Task4', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '12'},
-        {title: 'Task1', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '13'},
-        {title: 'Task2', status: TaskStatus.DONE, description: 'This is a task.', time: "2018-06-12T19:30", id: '14'},
-        {title: 'Task3', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '15'},
-        {title: 'Task4', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '16'},
-        {title: 'Task1', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '17'},
-        {title: 'Task2', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '18'},
-        {title: 'Task3', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '19'},
-        {title: 'Task4', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '20'},
-        {title: 'Task1', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '21'},
-        {title: 'Task2', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '22'},
-        {title: 'Task3', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '23'},
-        {title: 'Task4', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '24'},
-        {title: 'Task5', status: TaskStatus.STARTED, description: 'This is a task.', time: "2018-06-12T19:30", id: '25'}
+        {id: '1', title: 'Hello', description: 'This is a task.', status: TaskStatus.DONE, time: randomDate },
+        {id: '2', title: 'Task2', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '3', title: 'Task3', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '4', title: 'Task4', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '5', title: 'Task1', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '6', title: 'Task2', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '7', title: 'Task3', description: 'This is a task.', status: TaskStatus.DONE, time: randomDate },
+        {id: '8', title: 'Task4', description: 'This is a task.', status: TaskStatus.DONE, time: randomDate },
+        {id: '9', title: 'Task1', description: 'This is a task.', status: TaskStatus.DONE, time: randomDate },
+        {id: '10', title: 'Task2', description: 'Steven likes big dicks', status: TaskStatus.STARTED, time: randomDate },
+        {id: '11', title: 'Task3', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '12', title: 'Task4', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '13', title: 'Task1', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '14', title: 'Task2', description: 'This is a task.', status: TaskStatus.DONE, time: randomDate },
+        {id: '15', title: 'Task3', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '16', title: 'Task4', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '17', title: 'Task1', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '18', title: 'Task2', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '19', title: 'Task3', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '20', title: 'Task4', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '21', title: 'Task1', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '22', title: 'Task2', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '23', title: 'Task3', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '24', title: 'Task4', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate },
+        {id: '25', title: 'Task5', description: 'This is a task.', status: TaskStatus.STARTED, time: randomDate }
     ];
 
     constructor(props: {}) {
