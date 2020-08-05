@@ -1,23 +1,24 @@
-import styles from './Footer.module.css';
-import addIcon from '../../assets/images/add.svg';
+import React from 'react';
 import {pure} from 'recompose';
-import TaskModel, {TaskStatus} from "../../containers/TaskModel";
 
-const React = require('react');
+// Models
+import TaskModel, {TaskStatus} from "../../models/TaskModel";
 
+// Components
+import FooterItem from "./FooterItem/FooterItem";
+import TotalTasks from './TotalTasks/TotalTasks';
+import CompletedTasks from './CompletedTasks/CompletedTasks';
+import AddTask from './AddTask/AddTask';
 
+// Styles
+import styles from './Footer.module.css';
 
-const Footer = (props: { tasks: TaskModel[]; }) => {
-    const completedTasks = props.tasks.filter(task => task.status === TaskStatus.DONE).length;
-
-    return (
-        <footer className={styles.Footer}>
-            <div className={styles.FooterItem} id='totalTasks'>Total: {props.tasks.length}</div>
-            <div className={styles.FooterItem} id='completedTasks'>Completed: {completedTasks}</div>
-            <div className={styles.FooterItem} id='addTask'>
-                <img style={{height: '1em', width: '1em'}} src={addIcon} alt=""/>
-            </div>
-        </footer>);
-}
+const Footer = (props: { tasks: TaskModel[]; }) => (
+    <footer className={styles.Footer}>
+        <FooterItem id='totalTasks'><TotalTasks tasks={props.tasks}/></FooterItem>
+        <FooterItem id='completedTasks'><CompletedTasks tasks={props.tasks}/></FooterItem>
+        <FooterItem id='addTask'><AddTask/></FooterItem>
+    </footer>
+);
 
 export default pure(Footer);

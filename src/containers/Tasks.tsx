@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styles from '../components/Tasks/Tasks.module.css';
 import Task from './Task';
-import TaskModel, {TaskStatus} from "./TaskModel";
+import TaskModel, {TaskStatus} from "../models/TaskModel";
 
 
 interface Props {

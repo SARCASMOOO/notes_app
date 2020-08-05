@@ -1,8 +1,13 @@
-const React = require('react');
+import React from "react";
+import styles from './Layout.module.css';
 
-const Layout = (props: { children: any; }) => (
-  <div className='container'>
-      {props.children}
+interface Props {
+  children: React.ReactNode;
+}
+
+const Layout = ({children}: Props) => (
+  <div className={styles.Container}>
+      {children}
   </div>
 );
 

@@ -6,7 +6,6 @@ interface TaskModel {
     time: Date;
 }
 
-
 export enum TaskStatus {
     DONE,
     STARTED,

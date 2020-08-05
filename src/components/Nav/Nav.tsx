@@ -1,5 +1,5 @@
-import NavItem from '../components/Nav/NavItem/NavItem';
-import classes from '../components/Nav/Nav.module.css';
+import NavItem from './NavItem/NavItem';
+import classes from './Nav.module.css';
 import {Component} from "react";
 import {render} from "react-dom";
 

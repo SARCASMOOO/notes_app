@@ -4,13 +4,12 @@ import Draggable, {DraggableEventHandler} from 'react-draggable';
 import MoreInfo from "./MoreInfo";
 
 import styles from "../components/Tasks/Task/Task.module.css";
-import TaskModel from "./TaskModel";
+import TaskModel from "../models/TaskModel";
 
 
 interface Props {
     task: TaskModel;
     showMoreInfo: boolean;
-
     removeAction: () => void;
 }
 

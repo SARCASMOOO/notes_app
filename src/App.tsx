@@ -2,10 +2,10 @@ import './assets/css/index.css';
 import React, {Component} from 'react';
 
 import Layout from './components/Layout/Layout'
-import Nav from './containers/Nav'
+import Nav from './components/Nav/Nav'
 import Footer from "./components/Footer/Footer";
 import Tasks from './containers/Tasks';
-import TaskModel, {TaskStatus} from "./containers/TaskModel";
+import TaskModel, {TaskStatus} from "./models/TaskModel";
 
 
 //

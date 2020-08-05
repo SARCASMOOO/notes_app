@@ -4,7 +4,7 @@ import Button, {ButtonType} from './Button';
 import TaskBulk from "./TaskBulk";
 // Style
 import styles from "../components/Tasks/Task/Task.module.css";
-import TaskModel, {TaskStatus} from "./TaskModel";
+import TaskModel, {TaskStatus} from "../models/TaskModel";
 
 
 interface Props {
