@@ -1,16 +1,31 @@
 .NavItem {
-    text-align: center;
     align-self: center;
+
     align-items: center;
+
+    text-align: center;
+
     list-style-type: none;
+
     width: 100%;
+
     height: 100%;
+
     display: flex;
 }
 
 .NavItem > span {
     width: 100%;
+
     height: 1em;
+}
+
+.NavItem:active {
+    transform: scaleY(1.12);
+}
+
+.NavItem:hover {
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
 }
 
 .CurrentItem {

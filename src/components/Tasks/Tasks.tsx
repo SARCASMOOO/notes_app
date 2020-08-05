@@ -1,17 +1,12 @@
 import React, {Component} from 'react';
-import styles from '../components/Tasks/Tasks.module.css';
-import Task from './Task';
-import TaskModel, {TaskStatus} from "../models/TaskModel";
-
+import styles from './Tasks.module.css';
+import Task from './Task/Task';
+import TaskModel, {TaskStatus} from "../../models/TaskModel";
 
 interface Props {
     tasks: TaskModel[];
     removeTask: (task: TaskModel) => void;
     setStatus: (id: string, status: TaskStatus) => void;
-}
-
-interface State {
-    selected?: boolean;
 }
 
 class Tasks extends Component< Props, State > {

@@ -1,0 +1,6 @@
+.Button {
+    width: 4em;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}

@@ -3,14 +3,18 @@ import styles from './FooterItem.module.css';
 
 interface Props {
     className?: string;
-    id?: string ;
+
+    id: string ;
+
     children?: React.ReactNode;
 }
 
-const footerItem = ({className = '', children = '', id = ''}: Props) => (
+const footerItem = ({className = '', children, id}: Props) => (
     <div className={className + styles.FooterItem}
          id={id}>
+
         {children}
+
     </div>
 );
 

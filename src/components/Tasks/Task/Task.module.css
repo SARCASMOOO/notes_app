@@ -45,13 +45,6 @@
     background-color: white;
 }
 /* BUTTON */
-.Button {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 4em;
-}
-
 .MARK_STARTED > img {
     padding-top: 0.5em;
     width: 2em;

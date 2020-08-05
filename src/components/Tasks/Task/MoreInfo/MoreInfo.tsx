@@ -1,6 +1,6 @@
 import React, {CSSProperties} from "react";
 
-import styles from "../components/Tasks/Task/Task.module.css";
+import styles from "../Task.module.css";
 
 function MoreInfo({time, description}: { time: Date, description: string }) {
     const column: CSSProperties = {display: 'flex', flexDirection: 'column'};

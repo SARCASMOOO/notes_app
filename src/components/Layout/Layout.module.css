@@ -1,5 +1,7 @@
 .Container {
     display: grid;
+
     height: 100vh;
+
     grid-template-rows: 1fr 8fr 1fr;
 }
