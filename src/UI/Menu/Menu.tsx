@@ -1,1 +1,5 @@
-// TODO: Refactor Nav into using menu.
+import React from "react";
+
+const Menu = () => (<h1>Test</h1>);
+
+export default Menu;

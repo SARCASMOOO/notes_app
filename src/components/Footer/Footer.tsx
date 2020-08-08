@@ -14,10 +14,13 @@ import CompletedTasks from './CompletedTasks/CompletedTasks';
 import AddTask from './AddTask/AddTask';
 
 // Styles
-import styles from './Footer.module.css';
+import classes from './Footer.module.css';
 
-const Footer = (props: { tasks: TaskModel[]; }) => (
-    <footer className={styles.Footer}>
+// Interaces
+interface Props { tasks: TaskModel[]; }
+
+const Footer = (props: Props) => (
+    <footer className={classes.Footer}>
 
         <FooterItem id='totalTasks'><TotalTasks tasks={props.tasks}/></FooterItem>
 

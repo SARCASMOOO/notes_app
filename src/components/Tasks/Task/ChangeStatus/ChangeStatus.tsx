@@ -2,21 +2,31 @@ import React from "react";
 
 // Components
 import Button from "../../../../UI/Button/Button";
+
 import {TaskStatus} from "../../../../models/TaskModel";
-import styles from "../Task.module.css";
 
-const markButton = () => {
-    const isDone = task.status === TaskStatus.DONE;
+// Models
+// import ButtonType from "../../../../models/ButtonModel";
 
-    const bkgColor = isDone ? styles.Done : styles.NotDone;
+// Styles
+import classes from "../Task.module.css";
 
-    const startedButton = (<Button type={ButtonType.MARK_STARTED} onClick={this.markAsStarted}/>);
+// Interfaces
+interface Props { status: TaskStatus; }
 
-    const doneButton = (<Button className={ButtonType.MARK_DONE} onClick={this.markAsDone}/>);
+const ChangeStatus = (props: Props) => {
+    // const isDone = props.status === TaskStatus.DONE;
 
-    return (isDone ? doneButton : startedButton);
+    // const bkgColor = isDone ? classes.Done : classes.NotDone;
+
+    // const startedButton = (<Button type={ButtonType.MARK_STARTED} onClick={() => updateStatus(TaskStatus.STARTED)}/>);
+    // const doneButton = (<Button className={ButtonType.MARK_DONE} onClick={this.markAsDone}/>);
+
+    // return (isDone ? doneButton : startedButton);\
+    return <h1>Test</h1>;
 };
 
+export default ChangeStatus;
 
 
 

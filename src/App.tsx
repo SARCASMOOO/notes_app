@@ -1,50 +1,29 @@
 import './assets/css/index.css';
 import React, {Component} from 'react';
 
+// Components
 import Layout from './components/Layout/Layout'
+
 import Nav from './containers/Nav'
+
 import Footer from "./components/Footer/Footer";
-import Tasks from './components/Tasks/Tasks';
-import TaskModel, {TaskStatus} from "./models/TaskModel";
 
+import Tasks from './containers/Tasks';
 
-//
-// function map<T, C>(arr: T[], fn: (elem: T) => C): C[] {
-//     let result: C[] = [];
-//
-//     for (let elem of arr) {
-//         result.push(fn(elem));
-//     }
-//
-//     return result;
-// }
-//
-// let abc = [2, 3, 3, 5];
-//
-// map(abc, (elem) => elem * 2)
-// map(abc, (elem) => true)
+const tasks = 3;
 
-// map(abc, (elem)=> elem*2) => [4,6,6,10]
-// map(abc, (elem) => `Hello ${elem}`)
-
-
-
-
-// description: 'This is a task.', status: done | started | overdue
-
-const randomDate = new Date("2018-06-12T19:30");
-
-class App extends Component<{}, { tasks: TaskModel[] }> {
+class App extends Component<{}, {}> {
     render() {
+        const time = new Date((new Date()).getTime() + 24*60*60*1000);
+        const tempTask = {id: "1", title: "Hello", description: "This is a task.", status: 1, time: time};
+
         return (
             <Layout>
                 <Nav/>
                 <main>
-                    <Tasks setStatus={this.setStatus}
-                           removeTask={this.removeTask}
-                           tasks={this.state.tasks}/>
+                    <Tasks/>
                 </main>
-                <Footer tasks={this.state.tasks}/>
+                <Footer tasks={[tempTask]}/>
             </Layout>
         );
     }
