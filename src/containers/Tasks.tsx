@@ -42,7 +42,9 @@ class Tasks extends Component< Props, State > {
 
     constructor(props: Props) {
         super(props);
-        const time = new Date((new Date()).getTime() + 24*60*60*1000);
+        const MILLISECONDS_IN_DAY = 24 * 60 * 60 * 1000;
+
+        const time = new Date((new Date()).getTime() + MILLISECONDS_IN_DAY);
         const tempTask = [
             {id: "1", title: "Hello2", description: "This is a task.", status: TaskStatus.STARTED, time: time},
             {id: "2", title: "Hello2", description: "This is a task.", status: TaskStatus.STARTED, time: time},
@@ -55,15 +57,11 @@ class Tasks extends Component< Props, State > {
 
     updateStatus = (status: TaskStatus, id: string)  => {
         this.setState(prevState => {
-            let copy = prevState.tasks.copy();
+            const copy = prevState.tasks.copy();
 
-            let task = copy.get(id);
-            if (task) {
-                task.status = status;
-                copy.set(id, task);
-            }
+            const task = copy.get(id);
+            if (task) task.status = status;
 
-            console.log(copy);
             return {tasks: copy};
         });
     }
@@ -89,16 +87,13 @@ class Tasks extends Component< Props, State > {
     };
 
 
-    transformTasks = () => {
-        const dictionary = this.state.tasks;
-        return dictionary.map((id, task) => <Task key={id} task={task} updateStatus={this.updateStatus}/>);
-    }
-
-
     render() {
+        const { tasks } = this.state;
+        const taskList = tasks.map((id, task) => <Task key={id} task={task} updateStatus={this.updateStatus}/>);
+        
         return (
             <main className={classes.Tasks}>
-                {this.transformTasks()}
+                {taskList}
             </main>
         );
     }

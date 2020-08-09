@@ -22,7 +22,15 @@ interface Props {
 const Task = ({task, updateStatus}: Props) => {
     const [show, setShow] = useState(false);
 
-    return (<div className={classes.Task}>
+    const getStatusColor = (status: TaskStatus) => {
+    switch (status) {
+        case TaskStatus.DONE: return "green";
+        case TaskStatus.OVERDUE: return "coral";
+        case TaskStatus.STARTED: return "white";
+    }
+    };
+
+    return (<div className={classes.Task} style={{backgroundColor: getStatusColor(task.status)}}>
         <div className={classes.TopRow}>
             <div className={classes.Info}>
                 <div>{task.title}</div>
