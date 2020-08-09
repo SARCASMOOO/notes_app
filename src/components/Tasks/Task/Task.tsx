@@ -26,9 +26,14 @@ const Task = (props: Props) => {
     const [show, setShow] = useState(false);
 
     return (<div className={classes.Task}>
-        <ChangeStatus id={props.task.id} status={props.task.status} updateStatus={props.updateStatus}/>
-        <MoreInfo time={props.task.time} description={props.task.description} show={show}/>
-        <Expand updateShow={updateShow} />
+        <div className={classes.Info}>
+            <div>{props.task.title}</div>
+            <div>{props.task.time.toLocaleString()}</div>
+        </div>
+        <div className={classes.Button}><ChangeStatus id={props.task.id} status={props.task.status} updateStatus={props.updateStatus}/></div>
+        <div className={classes.Button}><Expand className={classes.Expand} updateShow={updateShow} /></div>
+
+        <div><MoreInfo time={props.task.time} description={props.task.description} show={show}/></div>
     </div>)
 }
 

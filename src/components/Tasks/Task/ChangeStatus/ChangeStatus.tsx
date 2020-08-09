@@ -33,8 +33,8 @@ const newStatus = (status: TaskStatus) => {
     }
 }
 
-const ChangeStatus = ({className = '', status, updateStatus, id}: Props) =>
-    <Button className={className} onClick={() => (updateStatus(newStatus(status), id))} key='33'>
+const ChangeStatus = ({className, status, updateStatus, id}: Props) =>
+    <Button className={className} onClick={() => (updateStatus(newStatus(status), id))}>
         <img src={icon} alt='Mark task as finished.'/>
     </Button>
 

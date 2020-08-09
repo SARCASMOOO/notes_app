@@ -1,6 +1,21 @@
 .Task {
     display: flex;
-    justify-content: space-between;
-    padding: 5px;
+    justify-content: flex-end;
 }
 
+.Info {
+    flex:auto;
+}
+
+.Task > div {
+    border: 1px solid black;
+}
+
+.Button {
+    width: 50px;
+    padding: 10px;
+}
+
+.Expand > img {
+    width: 100%;
+}

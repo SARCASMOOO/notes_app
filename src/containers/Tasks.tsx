@@ -25,7 +25,8 @@ interface Tasks {
     removeTask: () => number;
 }
 
-class Tasks extends Component< Props, State > implements Tasks {
+class Tasks extends Component< Props, State > {
+
     constructor(props: Props) {
         super(props);
         const time = new Date((new Date()).getTime() + 24*60*60*1000);
