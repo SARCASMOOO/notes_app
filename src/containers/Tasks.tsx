@@ -13,7 +13,7 @@ import styles from "../components/Tasks/Task/Task.module.css";
 // Interfaces
 interface Props {}
 
-interface State { tasks: TaskModel[]; }
+interface State { tasks: Map<string, TaskModel>; }
 
 interface Tasks {
     addTask: () => number;
@@ -24,6 +24,38 @@ interface Tasks {
 
     removeTask: () => number;
 }
+
+
+function identifiable(tasks: TaskModel[]) {
+    let map = new Map<string, TaskModel>();
+
+    tasks.forEach(task => map.set(task.id, task));
+
+    return map;
+}
+
+function mapForMap<K,V,T>(map: Map<K,V>, fn: (key: K, value: V) => T) {
+    let result: T[] = [];
+
+    map.forEach((value, key) => {
+        result.push((fn(key, value)));
+    });
+
+    return result;
+}
+
+function copyMap<K, V>(map: Map<K, V>) {
+    let newMap = new Map<K,V>();
+
+    map.forEach((value, key) => newMap.set(key, value));
+
+    return newMap;
+}
+
+// Map = 1 -> hello, 2 => world, 3 => steven (Map<number, string>)
+// fn: (key, value) => `${key} ${value}`
+// ['1 hello', '2 world', '3 steven']
+//
 
 class Tasks extends Component< Props, State > {
 
@@ -37,19 +69,32 @@ class Tasks extends Component< Props, State > {
             {id: "4", title: "Hello2", description: "This is a task.", status: TaskStatus.STARTED, time: time},
             {id: "5", title: "Hello2", description: "This is a task.", status: TaskStatus.STARTED, time: time}];
 
-        this.state = {tasks: tempTask};
+        this.state = {tasks: identifiable(tempTask)};
     }
 
     updateStatus = (status: TaskStatus, id: string)  => {
-        let tasks = [...this.state.tasks];
+        this.setState(prevState => {
+            let copy = copyMap(prevState.tasks);
 
-        tasks = tasks.filter((task) => task.id === id);
+            let task = copy.get(id);
+            if (task) {
+                task.status = status;
+                copy.set(id, task);
+            }
 
-        if (tasks.length > 0) tasks[+id].status = status;
+            console.log(copy);
+            return {tasks: copy};
+        });
 
-        this.setState({tasks: tasks});
-
-        console.log('Update status for id: ' + id + ', and status of: ' + status);
+        // let tasks = [...this.state.tasks];
+        //
+        // tasks = tasks.filter((task) => task.id === id);
+        //
+        // if (tasks.length > 0) tasks[+id].status = status;
+        //
+        // this.setState({tasks: tasks});
+        //
+        // console.log('Update status for id: ' + id + ', and status of: ' + status);
     }
 
     addTask = () => {
@@ -72,7 +117,11 @@ class Tasks extends Component< Props, State > {
         return 2;
     };
 
-    transformTasks = () => this.state.tasks.map(task => <Task key={task.id} task={task} updateStatus={this.updateStatus}/>);
+
+    transformTasks = () => {
+        const dictionary = this.state.tasks;
+        return mapForMap(dictionary,(id, task) => <Task key={id} task={task} updateStatus={this.updateStatus}/>);
+    }
 
 
     render() {
