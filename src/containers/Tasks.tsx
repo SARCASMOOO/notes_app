@@ -10,6 +10,8 @@ import TaskModel, {TaskStatus} from "../models/TaskModel";
 import classes from './Tasks.module.css';
 import styles from "../components/Tasks/Task/Task.module.css";
 
+import './Map';
+
 // Interfaces
 interface Props {}
 
@@ -34,28 +36,7 @@ function identifiable(tasks: TaskModel[]) {
     return map;
 }
 
-function mapForMap<K,V,T>(map: Map<K,V>, fn: (key: K, value: V) => T) {
-    let result: T[] = [];
 
-    map.forEach((value, key) => {
-        result.push((fn(key, value)));
-    });
-
-    return result;
-}
-
-function copyMap<K, V>(map: Map<K, V>) {
-    let newMap = new Map<K,V>();
-
-    map.forEach((value, key) => newMap.set(key, value));
-
-    return newMap;
-}
-
-// Map = 1 -> hello, 2 => world, 3 => steven (Map<number, string>)
-// fn: (key, value) => `${key} ${value}`
-// ['1 hello', '2 world', '3 steven']
-//
 
 class Tasks extends Component< Props, State > {
 
@@ -74,7 +55,7 @@ class Tasks extends Component< Props, State > {
 
     updateStatus = (status: TaskStatus, id: string)  => {
         this.setState(prevState => {
-            let copy = copyMap(prevState.tasks);
+            let copy = prevState.tasks.copy();
 
             let task = copy.get(id);
             if (task) {
@@ -85,16 +66,6 @@ class Tasks extends Component< Props, State > {
             console.log(copy);
             return {tasks: copy};
         });
-
-        // let tasks = [...this.state.tasks];
-        //
-        // tasks = tasks.filter((task) => task.id === id);
-        //
-        // if (tasks.length > 0) tasks[+id].status = status;
-        //
-        // this.setState({tasks: tasks});
-        //
-        // console.log('Update status for id: ' + id + ', and status of: ' + status);
     }
 
     addTask = () => {
@@ -120,7 +91,7 @@ class Tasks extends Component< Props, State > {
 
     transformTasks = () => {
         const dictionary = this.state.tasks;
-        return mapForMap(dictionary,(id, task) => <Task key={id} task={task} updateStatus={this.updateStatus}/>);
+        return dictionary.map((id, task) => <Task key={id} task={task} updateStatus={this.updateStatus}/>);
     }
 
 
