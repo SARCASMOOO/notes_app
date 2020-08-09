@@ -2,11 +2,12 @@ import React, {CSSProperties} from "react";
 
 import styles from "../Task.module.css";
 
-function MoreInfo({time, description}: { time: Date, description: string }) {
+function MoreInfo({time, description, show}: { time: Date, description: string, show: boolean }) {
     const column: CSSProperties = {display: 'flex', flexDirection: 'column'};
 
     const date = time.toISOString().slice(0, -5);
-    return (
+
+    return show ? (
         <div id={styles.MoreInfo}>
             <form style={column}>
                 <label style={column}>
@@ -21,7 +22,7 @@ function MoreInfo({time, description}: { time: Date, description: string }) {
                 </label>
             </form>
         </div>
-    );
+    ) : null;
 }
 
 export default MoreInfo;

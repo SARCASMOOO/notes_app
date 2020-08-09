@@ -1,24 +1,37 @@
 import React, {useState} from "react";
 
 // Components
-import Draggable, {DraggableEventHandler} from 'react-draggable';
-
-import Button from '../../../UI/Button/Button';
-
 import MoreInfo from './MoreInfo/MoreInfo';
 
+import ChangeStatus from "./ChangeStatus/ChangeStatus";
+
+import Expand from "./Expand/Expand";
+
 // Styles
-import styles from "./Task.module.css";
+import classes from "./Task.module.css";
 
 // Models
 import TaskModel, {TaskStatus} from "../../../models/TaskModel";
 
 // Interfaces
 interface Props {
-    task: TaskModel
+    task: TaskModel;
+
+    updateStatus: (status: TaskStatus, id: string) => void;
 }
 
-const Task = (props: Props) => <h1>{props.task.title}</h1>;
+const Task = (props: Props) => {
+    const updateShow = () => setShow(prevShow => !prevShow);
+
+    const [show, setShow] = useState(false);
+
+    return (<div className={classes.Task}>
+        <ChangeStatus id={props.task.id} status={props.task.status} updateStatus={props.updateStatus}/>
+        <MoreInfo time={props.task.time} description={props.task.description} show={show}/>
+        <Expand updateShow={updateShow} />
+    </div>)
+}
+
 
 export default Task;
 

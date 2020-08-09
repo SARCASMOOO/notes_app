@@ -1,32 +1,42 @@
 import React from "react";
-
 // Components
 import Button from "../../../../UI/Button/Button";
 
+// Models
 import {TaskStatus} from "../../../../models/TaskModel";
 
-// Models
-// import ButtonType from "../../../../models/ButtonModel";
-
+// SVG
+import icon from '../../../../assets/images/finish.svg'
 // Styles
-import classes from "../Task.module.css";
+
 
 // Interfaces
-interface Props { status: TaskStatus; }
+interface Props {
+    status: TaskStatus;
 
-const ChangeStatus = (props: Props) => {
-    // const isDone = props.status === TaskStatus.DONE;
+    className?: string;
 
-    // const bkgColor = isDone ? classes.Done : classes.NotDone;
+    updateStatus: (status: TaskStatus, id: string) => void;
 
-    // const startedButton = (<Button type={ButtonType.MARK_STARTED} onClick={() => updateStatus(TaskStatus.STARTED)}/>);
-    // const doneButton = (<Button className={ButtonType.MARK_DONE} onClick={this.markAsDone}/>);
+    id: string;
+}
 
-    // return (isDone ? doneButton : startedButton);\
-    return <h1>Test</h1>;
-};
+const newStatus = (status: TaskStatus) => {
+    console.log(status);
+    switch (status) {
+        case TaskStatus.DONE:
+            return TaskStatus.STARTED;
+        case TaskStatus.STARTED:
+            return TaskStatus.DONE;
+        default:
+            return TaskStatus.STARTED;
+    }
+}
+
+const ChangeStatus = ({className = '', status, updateStatus, id}: Props) =>
+    <Button className={className} onClick={() => (updateStatus(newStatus(status), id))} key='33'>
+        <img src={icon} alt='Mark task as finished.'/>
+    </Button>
 
 export default ChangeStatus;
-
-
 

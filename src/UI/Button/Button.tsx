@@ -1,23 +1,22 @@
 import React from "react";
-const Tappable = require('react-tappable');
 
 // Styles
-import styles from './Button.module.css';
+import classes from './Button.module.css';
 
+// Components
+const Tappable = require('react-tappable');
+
+// Interfaces
 interface Props {
     onClick?: () => void;
-
-    children?: React.ReactNode;
-
-    className: string;
+    className?: string;
 }
 
-const getButtonStyles = (className: string) => `${styles.Button} ${className}`;
+const getClassNames = (className?: string) =>  `${classes.Button} ${className ?? ''}`;
 
-const Button = ({onClick, children, className}: Props) =>  (
-        <Tappable className={getButtonStyles(className)} onTap={onClick}>
+const Button = ({onClick, children, className}: React.PropsWithChildren<Props>) =>
+        <Tappable className={getClassNames(className)} onTap={onClick}>
             {children}
-        </Tappable>
-);
+        </Tappable>;
 
 export default Button;
