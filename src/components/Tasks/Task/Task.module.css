@@ -1,14 +1,18 @@
 .Task {
     display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+}
+
+/*TOP ROW*/
+.TopRow {
+    display: flex;
     justify-content: flex-end;
 }
 
 .Info {
     flex:auto;
-}
-
-.Task > div {
-    border: 1px solid black;
+    padding: 10px;
 }
 
 .Button {
