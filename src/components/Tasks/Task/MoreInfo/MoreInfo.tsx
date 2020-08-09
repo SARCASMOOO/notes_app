@@ -8,7 +8,7 @@ function MoreInfo({time, description, show}: { time: Date, description: string, 
     const date = time.toISOString().slice(0, -5);
 
     return show ? (
-        <div id={styles.MoreInfo}>
+        <div className={styles.MoreInfo}>
             <form style={column}>
                 <label style={column}>
                     Time: <input type="datetime-local" id="meeting-time" name="meeting-time" value={date}/>

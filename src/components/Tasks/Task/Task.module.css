@@ -15,6 +15,10 @@
     padding: 10px;
 }
 
+.Info > div {
+   margin-bottom: 4px;
+}
+
 .Button {
     width: 50px;
     padding: 10px;
@@ -22,4 +26,8 @@
 
 .Expand > img {
     width: 100%;
+}
+/*More Info*/
+.MoreInfo {
+    padding: 10px;
 }
