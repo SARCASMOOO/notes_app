@@ -28,10 +28,18 @@ interface Tasks {
 }
 
 
-function identifiable(tasks: TaskModel[]) {
-    let map = new Map<string, TaskModel>();
+// function identifiable(tasks: TaskModel[]) {
+//     let map = new Map<string, TaskModel>();
+//
+//     tasks.forEach(task => map.set(task.id, task));
+//
+//     return map;
+// }
 
-    tasks.forEach(task => map.set(task.id, task));
+function identifiable<T extends {id: string}>(array: T[]) {
+    let map = new Map<string, T>();
+
+    array.forEach(item => map.set(item.id, item));
 
     return map;
 }
