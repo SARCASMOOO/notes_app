@@ -16,27 +16,24 @@ import TaskModel, {TaskStatus} from "../../../models/TaskModel";
 // Interfaces
 interface Props {
     task: TaskModel;
-
     updateStatus: (status: TaskStatus, id: string) => void;
 }
 
-const Task = (props: Props) => {
-    const updateShow = () => setShow(prevShow => !prevShow);
-
+const Task = ({task, updateStatus}: Props) => {
     const [show, setShow] = useState(false);
 
     return (<div className={classes.Task}>
         <div className={classes.TopRow}>
             <div className={classes.Info}>
-                <div>{props.task.title}</div>
-                <div>{props.task.time.toLocaleString()}</div>
+                <div>{task.title}</div>
+                <div>{task.time.toLocaleString()}</div>
             </div>
-            <div className={classes.Button}><ChangeStatus id={props.task.id} status={props.task.status}
-                                                          updateStatus={props.updateStatus}/></div>
-            <div className={classes.Button}><Expand className={classes.Expand} updateShow={updateShow}/></div>
+            <div className={classes.Button}><ChangeStatus id={task.id} status={task.status}
+                                                          updateStatus={updateStatus}/></div>
+            <div className={classes.Button}><Expand className={classes.Expand} updateShow={() => setShow(!show)}/></div>
         </div>
 
-        <div><MoreInfo time={props.task.time} description={props.task.description} show={show}/></div>
+        <div><MoreInfo time={task.time} description={task.description} show={show}/></div>
     </div>)
 }
 
