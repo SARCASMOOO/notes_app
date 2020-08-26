@@ -7,7 +7,7 @@ Note app is a productivity tool to help you keep track of your day. Record tasks
   **Languages**: Typescript, React, MaterialUI
 
   <p align="center">
-  <img src="screenshots/notes.gif" width="80%"/>
+  <img src="screenshots/notes.gif" width="40%"/>
   </p>
 
 ## Screenshots
